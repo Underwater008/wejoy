@@ -1,0 +1,30 @@
+{
+  "name": "wejoy",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Community-owned food delivery infrastructure.",
+  "license": "AGPL-3.0-only",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Underwater008/wejoy.git"
+  },
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "engines": {
+    "node": ">=24.0.0"
+  },
+  "scripts": {
+    "dev": "npm run build -w @wejoy/domain && concurrently -k -n node,web -c blue,green \"npm run dev -w @wejoy/node\" \"npm run dev -w @wejoy/web\"",
+    "build": "npm run build -w @wejoy/domain && npm run build -w @wejoy/web && npm run build -w @wejoy/node",
+    "start": "npm run start -w @wejoy/node",
+    "test": "npm run test -w @wejoy/domain && npm run test -w @wejoy/node",
+    "typecheck": "npm run build -w @wejoy/domain && npm run typecheck -w @wejoy/web && npm run typecheck -w @wejoy/node",
+    "check": "npm run typecheck && npm test && npm run build",
+    "docker:build": "docker build -t wejoy:local ."
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.1"
+  }
+}

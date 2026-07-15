@@ -1,0 +1,16 @@
+services:
+  wejoy:
+    build: .
+    ports:
+      - "8787:8787"
+    environment:
+      NODE_NAME: Local WeJoy Node
+      NODE_PUBLIC_URL: http://localhost:8787
+      PAYMENT_PROVIDER: mock
+      SEED_DEMO_DATA: "true"
+    volumes:
+      - wejoy-data:/data
+    restart: unless-stopped
+
+volumes:
+  wejoy-data:
