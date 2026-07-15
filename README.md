@@ -16,6 +16,21 @@ WeJoy is a deployable community food-delivery node for consumers, independent re
 
 ## Run With Docker
 
+After the first tagged image is published, run it directly from GitHub Container Registry:
+
+```bash
+docker run --name wejoy \
+  -p 8787:8787 \
+  -v wejoy-data:/data \
+  -e NODE_NAME="My Community Node" \
+  -e NODE_PUBLIC_URL="http://localhost:8787" \
+  -e PAYMENT_PROVIDER=mock \
+  -e SEED_DEMO_DATA=true \
+  ghcr.io/underwater008/wejoy:0.1.0
+```
+
+To build the same image locally:
+
 ```bash
 docker build -t wejoy .
 docker run --name wejoy \

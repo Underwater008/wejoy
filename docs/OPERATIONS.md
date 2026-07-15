@@ -5,7 +5,6 @@
 Use a fresh persistent volume and terminate TLS in a reverse proxy or managed container platform.
 
 ```bash
-docker build -t wejoy:0.1.0 .
 docker volume create wejoy-data
 docker run -d --name wejoy --restart unless-stopped \
   -p 127.0.0.1:8787:8787 \
@@ -15,8 +14,10 @@ docker run -d --name wejoy --restart unless-stopped \
   -e PAYMENT_PROVIDER=mock \
   -e SEED_DEMO_DATA=false \
   -e ALLOW_REGISTRATION=true \
-  wejoy:0.1.0
+  ghcr.io/underwater008/wejoy:0.1.0
 ```
+
+Tagged releases publish `linux/amd64` and `linux/arm64` images. To build from an untagged commit instead, run `docker build -t wejoy:COMMIT .` and use that local tag.
 
 The health endpoint is `GET /health`. Docker also runs a 30-second health check.
 
