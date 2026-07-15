@@ -25,6 +25,6 @@
     "docker:build": "docker build -t wejoy:local ."
   },
   "devDependencies": {
-    "concurrently": "^9.2.1"
+    "concurrently": "^10.0.3"
   }
 }
